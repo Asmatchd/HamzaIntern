@@ -11,12 +11,12 @@ const App = () => {
         backgroundColor: '#faf',
         // backgroundColor: 'rgba(0,0,0,0.05)',
         height: 660,
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
       }}>
       <View
         style={{
-          height: 400,
+          height: 200,
           width: 410,
           backgroundColor: 'blue',
           alignItems: 'center',
@@ -29,6 +29,63 @@ const App = () => {
             height: 100,
             width: 100,
             backgroundColor: '#000',
+          }}></View>
+      </View>
+
+      <View
+        style={{
+          height: 200,
+          backgroundColor: '#aaf',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View
+          style={{
+            height: 100,
+            width: 100,
+            backgroundColor: '#a4a',
+          }}></View>
+
+        <View
+          style={{
+            height: 100,
+            width: 100,
+            backgroundColor: '#fa2',
+          }}></View>
+      </View>
+
+      <View
+        style={{
+          height: 200,
+          backgroundColor: '#f2a4',
+        }}>
+        <View
+          style={{
+            height: 150,
+            width: 150,
+            backgroundColor: '#fff',
+
+            // margin: 20,
+            marginLeft: 100,
+            // marginRight: 100,
+            marginTop: 30,
+            // marginBottom: 30,
+            // marginTop: -30,
+
+            borderColor: '#0ad',
+
+            borderWidth: 4,
+            // borderLeftWidth: 4,
+            // borderRightWidth: 4,
+            // borderTopWidth: 4,
+            // borderBottomWidth: 4,
+
+            // borderRadius: 15,
+            borderTopLeftRadius: 15,
+            borderTopRightRadius: 40,
+            borderBottomLeftRadius: 40,
+            borderBottomRightRadius: 15,
           }}></View>
       </View>
     </View>
