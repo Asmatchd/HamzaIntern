@@ -23,8 +23,17 @@ export class SignUp extends React.Component {
             style={{
               height: '15%',
               // backgroundColor: '#aaf',
-            }}
-          />
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 25,
+                fontWeight: 'bold',
+              }}>
+              Sign Up
+            </Text>
+          </View>
 
           <Text
             style={{
@@ -95,7 +104,8 @@ export class SignUp extends React.Component {
           />
           <TouchableOpacity
             onPress={() => {
-              console.warn('Pressed');
+              // console.warn('Pressed');
+              this.props.navigation.navigate('Basics');
             }}
             style={{
               backgroundColor: '#fff',
@@ -127,7 +137,8 @@ export class SignUp extends React.Component {
 
             <TouchableOpacity
               onPress={() => {
-                console.warn('Pressed');
+                // console.warn('Pressed');
+                this.props.navigation.navigate('Basics1');
               }}>
               <Text
                 style={{
