@@ -1,34 +1,9 @@
-/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-export class SignUp extends React.Component {
-  state = {
-    name: '',
-    email: '',
-    password: '',
-  };
-
-  signUpUser = () => {
-    if (
-      this.state.name === '' ||
-      this.state.email === '' ||
-      this.state.password === ''
-    ) {
-      alert('All fields are required ');
-    } else {
-      if (this.state.password.length < 8) {
-        alert('Password must contain 8 characters');
-      } else {
-        console.warn('name = ' + this.state.name);
-        console.warn('email = ' + this.state.email);
-        console.warn('password = ' + this.state.password);
-      }
-    }
-  };
-
+export class SignIn extends React.Component {
   render() {
     return (
       <KeyboardAwareScrollView
@@ -46,7 +21,7 @@ export class SignUp extends React.Component {
           {/* top spacer */}
           <View
             style={{
-              height: '15%',
+              height: '8%',
               // backgroundColor: '#aaf',
               alignItems: 'center',
             }}>
@@ -56,8 +31,22 @@ export class SignUp extends React.Component {
                 fontSize: 25,
                 fontWeight: 'bold',
               }}>
-              Sign Up
+              Sign In
             </Text>
+          </View>
+
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+            }}>
+            <Image
+              style={{
+                height: 100,
+                width: 100,
+              }}
+              source={require('../../assets/user.png')}
+            />
           </View>
 
           <Text
@@ -85,25 +74,6 @@ export class SignUp extends React.Component {
           />
 
           <TextInput
-            onChangeText={txt => {
-              this.setState({name: txt});
-            }}
-            style={{
-              height: 50,
-              width: '100%',
-              fontSize: 18,
-              color: '#fff',
-            }}
-            underlineColorAndroid={'#fff'}
-            placeholder={'Name'}
-            placeholderTextColor={'#fff'}
-            // value={this.state.name}
-          />
-
-          <TextInput
-            onChangeText={txt => {
-              this.setState({email: txt});
-            }}
             style={{
               height: 50,
               width: '100%',
@@ -117,9 +87,6 @@ export class SignUp extends React.Component {
           />
 
           <TextInput
-            onChangeText={txt => {
-              this.setState({password: txt});
-            }}
             style={{
               height: 50,
               width: '100%',
@@ -130,7 +97,6 @@ export class SignUp extends React.Component {
             underlineColorAndroid={'#fff'}
             placeholder={'Password'}
             placeholderTextColor={'#fff'}
-            secureTextEntry={true}
           />
 
           <View
@@ -140,7 +106,8 @@ export class SignUp extends React.Component {
           />
           <TouchableOpacity
             onPress={() => {
-              this.signUpUser();
+              // console.warn('Pressed');
+              this.props.navigation.navigate('Basics');
             }}
             style={{
               backgroundColor: '#fff',
@@ -153,7 +120,7 @@ export class SignUp extends React.Component {
               style={{
                 fontSize: 18,
               }}>
-              Create Account
+              Sign In
             </Text>
           </TouchableOpacity>
 
@@ -167,13 +134,13 @@ export class SignUp extends React.Component {
                 color: '#fff',
                 marginTop: 3,
               }}>
-              Already have an account? {'  '}
+              Don't have an account? {'  '}
             </Text>
 
             <TouchableOpacity
               onPress={() => {
                 // console.warn('Pressed');
-                this.props.navigation.navigate('SignIn');
+                this.props.navigation.navigate('SignUp');
               }}>
               <Text
                 style={{
@@ -181,7 +148,7 @@ export class SignUp extends React.Component {
                   fontSize: 18,
                   textDecorationLine: 'underline',
                 }}>
-                SignIn
+                SignUp
               </Text>
             </TouchableOpacity>
           </View>

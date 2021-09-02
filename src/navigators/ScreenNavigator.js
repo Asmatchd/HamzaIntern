@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SignUp} from '../screens/signUp';
 import {Basics, Basics1} from '../screens/basics';
+import {SignIn} from '../screens/signIn';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,12 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
           options={{headerShown: false}}
         />
 
