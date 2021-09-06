@@ -2,6 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text} from 'react-native';
+import {NavHeader} from '../../components';
 
 export class Basics extends React.Component {
   render() {
@@ -15,6 +16,11 @@ export class Basics extends React.Component {
           // alignItems: 'center',
           // justifyContent: 'center',
         }}>
+        <NavHeader
+          title={'Basics'}
+          leftIc={'information'}
+          rightIc={'ios-add-outline'}
+        />
         <View
           style={{
             height: 200,
