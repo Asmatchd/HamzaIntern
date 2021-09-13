@@ -17,6 +17,7 @@ export class Dashboard extends React.Component {
           leftIc={'arrow-back'}
           leftPressed={() => {
             console.warn('Left');
+            // this.props.navigation.goBack();
           }}
           rightPressed={() => {
             console.warn('Right');
