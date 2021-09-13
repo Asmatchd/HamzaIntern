@@ -1,7 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StatusBar,
+} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {AppBtn, AppInput} from '../../components';
 
 export class SignIn extends React.Component {
   render() {
@@ -10,6 +18,7 @@ export class SignIn extends React.Component {
         contentContainerStyle={{
           flexGrow: 2,
         }}>
+        <StatusBar backgroundColor={'red'} />
         <View
           style={{
             backgroundColor: 'rgba(0,0,0,0.93)',
@@ -73,30 +82,18 @@ export class SignIn extends React.Component {
             }}
           />
 
-          <TextInput
+          <AppInput ic={'ios-mail'} placeholder={'Email'} />
+
+          <View
             style={{
-              height: 50,
-              width: '100%',
-              fontSize: 18,
-              marginTop: 10,
-              color: '#fff',
+              height: '2%',
             }}
-            underlineColorAndroid={'#fff'}
-            placeholder={'Email'}
-            placeholderTextColor={'#fff'}
           />
 
-          <TextInput
-            style={{
-              height: 50,
-              width: '100%',
-              fontSize: 18,
-              marginTop: 10,
-              color: '#fff',
-            }}
-            underlineColorAndroid={'#fff'}
+          <AppInput
+            ic={'ios-lock-closed'}
             placeholder={'Password'}
-            placeholderTextColor={'#fff'}
+            secureTextEntry={true}
           />
 
           <View
@@ -104,25 +101,13 @@ export class SignIn extends React.Component {
               height: '7%',
             }}
           />
-          <TouchableOpacity
+
+          <AppBtn
+            txt={'Sign In'}
             onPress={() => {
-              // console.warn('Pressed');
               this.props.navigation.navigate('Basics');
             }}
-            style={{
-              backgroundColor: '#fff',
-              height: 55,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 8,
-            }}>
-            <Text
-              style={{
-                fontSize: 18,
-              }}>
-              Sign In
-            </Text>
-          </TouchableOpacity>
+          />
 
           <View
             style={{

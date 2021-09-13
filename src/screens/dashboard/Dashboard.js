@@ -15,6 +15,12 @@ export class Dashboard extends React.Component {
         <NavHeader
           title={'Dashboard'}
           leftIc={'arrow-back'}
+          leftPressed={() => {
+            console.warn('Left');
+          }}
+          rightPressed={() => {
+            console.warn('Right');
+          }}
           rightIc={'chatbox-outline'}
         />
       </View>
