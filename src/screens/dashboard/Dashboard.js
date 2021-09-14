@@ -24,6 +24,29 @@ export class Dashboard extends React.Component {
           }}
           rightIc={'chatbox-outline'}
         />
+
+        <View
+          style={{
+            height: '18%',
+            // backgroundColor: '#faf',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <TouchableOpacity
+            style={{
+              height: '80%',
+              backgroundColor: '#fff',
+              width: '90%',
+              borderColor: 'red',
+              borderWidth: 0.5,
+              borderRadius: 5,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text>FlatList</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
