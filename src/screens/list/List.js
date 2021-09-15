@@ -12,6 +12,7 @@ export class List extends React.Component {
       {name: 'Kamran'},
       {name: 'Waseem'},
     ],
+    showRefreshing: false,
   };
 
   renderDesign = item => (
@@ -23,9 +24,22 @@ export class List extends React.Component {
         justifyContent: 'center',
         backgroundColor: '#faf',
       }}>
-      <Text>{item.name}</Text>
+      <Text
+        style={{
+          color: '#000',
+        }}>
+        {item.name}
+      </Text>
     </View>
   );
+
+  controlRefreshing = () => {
+    this.setState({showRefreshing: true}, () => {
+      setTimeout(() => {
+        this.setState({showRefreshing: false});
+      }, 3000);
+    });
+  };
 
   render() {
     return (
@@ -45,6 +59,25 @@ export class List extends React.Component {
           data={this.state.data}
           renderItem={({item}) => this.renderDesign(item)}
           keyExtractor={(index, item) => item}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{
+                height: 5,
+              }}
+            />
+          )}
+          ListHeaderComponent={() => (
+            <View>
+              <Text>This is header</Text>
+            </View>
+          )}
+          ListFooterComponent={() => (
+            <View>
+              <Text>This is footer</Text>
+            </View>
+          )}
+          refreshing={this.state.showRefreshing}
+          onRefresh={() => this.controlRefreshing()}
         />
       </View>
     );
