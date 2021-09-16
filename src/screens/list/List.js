@@ -1,16 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {NavHeader} from '../../components';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export class List extends React.Component {
   state = {
     data: [
-      {name: 'Khawer'},
-      {name: 'Ali'},
-      {name: 'Umer'},
-      {name: 'Kamran'},
-      {name: 'Waseem'},
+      {name: 'Khawer', phone: '123456789', img: require('../../assets/1.jpg')},
+      {name: 'Ali', phone: '8765432', img: require('../../assets/2.jpg')},
+      {name: 'Umer', phone: '32545726', img: require('../../assets/3.jpg')},
+      {name: 'Kamran', phone: '12348765', img: require('../../assets/4.jpg')},
+      {name: 'Waseem', phone: '35434626', img: require('../../assets/1.jpg')},
     ],
     showRefreshing: false,
   };
@@ -18,18 +19,61 @@ export class List extends React.Component {
   renderDesign = item => (
     <View
       style={{
-        height: 50,
+        height: 70,
         width: '100%',
+        // backgroundColor: '#faf',
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#faf',
       }}>
-      <Text
+      <View
         style={{
-          color: '#000',
+          flexDirection: 'row',
+          height: '100%',
+          width: '90%',
+          // backgroundColor: '#aaf',
+          borderWidth: 0.5,
+          borderRadius: 5,
+          borderColor: 'red',
+          padding: 5,
         }}>
-        {item.name}
-      </Text>
+        <View
+          style={{
+            // backgroundColor: '#aAF',
+            height: '100%',
+            width: '20%',
+          }}>
+          <Image
+            style={{
+              height: '100%',
+              width: '100%',
+              // resizeMode: 'contain',
+            }}
+            source={item.img}
+          />
+        </View>
+
+        <View
+          style={{
+            // backgroundColor: '#a3a',
+            height: '100%',
+            width: '65%',
+            paddingLeft: 15,
+            justifyContent: 'center',
+          }}>
+          <Text>Name: {item.name}</Text>
+          <Text>Phone: {item.phone}</Text>
+        </View>
+
+        <TouchableOpacity
+          style={{
+            // backgroundColor: '#aAF',
+            height: '100%',
+            width: '15%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Icon name={'chevron-forward'} size={25} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
@@ -62,7 +106,7 @@ export class List extends React.Component {
           ItemSeparatorComponent={() => (
             <View
               style={{
-                height: 5,
+                height: 10,
               }}
             />
           )}
