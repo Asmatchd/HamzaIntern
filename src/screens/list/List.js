@@ -7,11 +7,41 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export class List extends React.Component {
   state = {
     data: [
-      {name: 'Khawer', phone: '123456789', img: require('../../assets/1.jpg')},
-      {name: 'Ali', phone: '8765432', img: require('../../assets/2.jpg')},
-      {name: 'Umer', phone: '32545726', img: require('../../assets/3.jpg')},
-      {name: 'Kamran', phone: '12348765', img: require('../../assets/4.jpg')},
-      {name: 'Waseem', phone: '35434626', img: require('../../assets/1.jpg')},
+      {
+        name: 'Khawer',
+        phone: '123456789',
+        img: require('../../assets/1.jpg'),
+        age: '20',
+        dob: '10-sep-2001',
+      },
+      {
+        name: 'Ali',
+        phone: '8765432',
+        img: require('../../assets/2.jpg'),
+        age: '22',
+        dob: '22-oct-2001',
+      },
+      {
+        name: 'Umer',
+        phone: '32545726',
+        img: require('../../assets/3.jpg'),
+        age: '18',
+        dob: '19-n0v-2001',
+      },
+      {
+        name: 'Kamran',
+        phone: '12348765',
+        img: require('../../assets/4.jpg'),
+        age: '40',
+        dob: '10-apr-2001',
+      },
+      {
+        name: 'Waseem',
+        phone: '35434626',
+        img: require('../../assets/1.jpg'),
+        age: '25',
+        dob: '10-sep-2005',
+      },
     ],
     showRefreshing: false,
   };
@@ -64,6 +94,12 @@ export class List extends React.Component {
         </View>
 
         <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Details', {
+              hamza: item,
+              study: 'ok',
+            });
+          }}
           style={{
             // backgroundColor: '#aAF',
             height: '100%',

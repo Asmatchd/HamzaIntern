@@ -5,7 +5,7 @@ import {SignUp} from '../screens/signUp';
 import {Basics, Basics1} from '../screens/basics';
 import {SignIn} from '../screens/signIn';
 import {Dashboard} from '../screens/dashboard';
-import {List} from '../screens/list';
+import {Details, List} from '../screens/list';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +16,11 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="List"
           component={List}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Details"
+          component={Details}
           options={{headerShown: false}}
         />
         <Stack.Screen
