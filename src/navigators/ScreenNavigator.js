@@ -6,6 +6,7 @@ import {Basics, Basics1} from '../screens/basics';
 import {SignIn} from '../screens/signIn';
 import {Dashboard} from '../screens/dashboard';
 import {Details, List} from '../screens/list';
+import {Splash} from '../screens/splash';
 
 const Stack = createStackNavigator();
 
@@ -13,16 +14,12 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="List"
-          component={List}
+        {/* <Stack.Screen
+          name="Splash"
+          component={Splash}
           options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Details"
-          component={Details}
-          options={{headerShown: false}}
-        />
+        /> */}
+
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
@@ -34,9 +31,20 @@ export const ScreenNavigator = () => {
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name="SignIn"
           component={SignIn}
+          options={{headerShown: false}}
+        /> */}
+
+        <Stack.Screen
+          name="List"
+          component={List}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Details"
+          component={Details}
           options={{headerShown: false}}
         />
 

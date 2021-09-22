@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
@@ -10,8 +11,33 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppBtn, AppInput} from '../../components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class SignIn extends React.Component {
+  state = {
+    email: '',
+    password: '',
+  };
+
+  signIn = () => {
+    if (this.state.email === '' || this.state.password === '') {
+      alert('All fields are required');
+    } else {
+      if (this.state.password.length < 8) {
+        alert('Password must contain 8 characters');
+      } else {
+        const data = {
+          email: this.state.email,
+          password: this.state.password,
+        };
+
+        AsyncStorage.setItem('userData', JSON.stringify(data), (error, res) => {
+          error ? alert(error) : this.props.navigation.replace('Dashboard');
+        });
+      }
+    }
+  };
+
   render() {
     return (
       <KeyboardAwareScrollView
@@ -82,7 +108,11 @@ export class SignIn extends React.Component {
             }}
           />
 
-          <AppInput ic={'ios-mail'} placeholder={'Email'} />
+          <AppInput
+            ic={'ios-mail'}
+            placeholder={'Email'}
+            onChangeText={txt => this.setState({email: txt})}
+          />
 
           <View
             style={{
@@ -94,6 +124,7 @@ export class SignIn extends React.Component {
             ic={'ios-lock-closed'}
             placeholder={'Password'}
             secureTextEntry={true}
+            onChangeText={txt => this.setState({password: txt})}
           />
 
           <View
@@ -105,7 +136,7 @@ export class SignIn extends React.Component {
           <AppBtn
             txt={'Sign In'}
             onPress={() => {
-              this.props.navigation.navigate('Basics');
+              this.signIn();
             }}
           />
 
