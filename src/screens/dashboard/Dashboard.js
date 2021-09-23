@@ -1,9 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {NavHeader} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -27,54 +25,68 @@ export class Dashboard extends React.Component {
     });
   };
 
+  logOut = () => {
+    AsyncStorage.removeItem('userData', () => {
+      this.props.navigation.replace('SignIn');
+    });
+  };
+
   render() {
     return (
-      <View
+      <ImageBackground
         style={{
-          flex: 1,
-        }}>
-        <NavHeader
-          title={'Dashboard'}
-          leftIc={'arrow-back'}
-          leftPressed={() => {
-            console.warn('Left');
-            // this.props.navigation.goBack();
-          }}
-          rightPressed={() => {
-            alert(
-              'email = ' +
-                this.state.email +
-                '\n' +
-                'password = ' +
-                this.state.password,
-            );
-          }}
-          rightIc={'chatbox-outline'}
-        />
-
+          height: '100%',
+        }}
+        source={require('../../assets/bg.jpg')}>
         <View
           style={{
-            height: '18%',
-            // backgroundColor: '#faf',
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
+            flex: 1,
+            backgroundColor: '#0006',
           }}>
-          <TouchableOpacity
+          <NavHeader
+            title={'Dashboard'}
+            leftIc={'list'}
+            leftPressed={() => {
+              console.warn('Left');
+              // this.props.navigation.goBack();
+            }}
+            rightPressed={() => {
+              this.logOut();
+              // alert(
+              //   'email = ' +
+              //     this.state.email +
+              //     '\n' +
+              //     'password = ' +
+              //     this.state.password,
+              // );
+            }}
+            rightIc={'chatbox-outline'}
+          />
+
+          <View
             style={{
-              height: '80%',
-              backgroundColor: '#fff',
-              width: '90%',
-              borderColor: 'red',
-              borderWidth: 0.5,
-              borderRadius: 5,
+              height: '18%',
+              // backgroundColor: '#faf',
+              width: '100%',
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text>FlatList</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                height: '80%',
+                backgroundColor: '#fff',
+                width: '90%',
+                borderColor: 'red',
+                borderWidth: 0.5,
+                borderRadius: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text>FlatList</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }

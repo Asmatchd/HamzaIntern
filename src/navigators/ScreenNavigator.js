@@ -31,11 +31,11 @@ export const ScreenNavigator = () => {
           options={{headerShown: false}}
         />
 
-        {/* <Stack.Screen
+        <Stack.Screen
           name="SignIn"
           component={SignIn}
           options={{headerShown: false}}
-        /> */}
+        />
 
         <Stack.Screen
           name="List"

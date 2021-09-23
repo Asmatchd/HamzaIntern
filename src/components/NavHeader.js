@@ -11,7 +11,7 @@ export class NavHeader extends React.Component {
         style={{
           width: '100%',
           height: '8%',
-          // backgroundColor: '#aaf',
+          backgroundColor: '#fff9',
           flexDirection: 'row',
           borderBottomWidth: 0.3,
           borderBottomColor: '#0005',

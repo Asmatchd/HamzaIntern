@@ -1,14 +1,27 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, Image} from 'react-native';
-import {NavHeader} from '../../components';
-import Icon from 'react-native-vector-icons/Ionicons';
-
+import {View, Image} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export class Splash extends React.Component {
   componentDidMount = () => {
-    setTimeout(() => {
-      this.props.navigation.replace('Dashboard');
-    }, 3000);
+    // setTimeout(() => {
+    //   this.props.navigation.replace('Dashboard');
+    // }, 3000);
+    this.getUser();
+  };
+
+  getUser = () => {
+    AsyncStorage.getItem('userData', (error, response) => {
+      if (error || response === null) {
+        setTimeout(() => {
+          this.props.navigation.replace('SignIn');
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          this.props.navigation.replace('Dashboard');
+        }, 3000);
+      }
+    });
   };
 
   render() {
