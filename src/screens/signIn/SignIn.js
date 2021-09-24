@@ -32,7 +32,9 @@ export class SignIn extends React.Component {
         };
 
         AsyncStorage.setItem('userData', JSON.stringify(data), (error, res) => {
-          error ? alert(error) : this.props.navigation.replace('Dashboard');
+          error
+            ? alert(error)
+            : this.props.navigation.replace('DrawerNavigator');
         });
       }
     }

@@ -47,20 +47,8 @@ export class Dashboard extends React.Component {
             title={'Dashboard'}
             leftIc={'list'}
             leftPressed={() => {
-              console.warn('Left');
-              // this.props.navigation.goBack();
+              this.props.navigation.openDrawer();
             }}
-            rightPressed={() => {
-              this.logOut();
-              // alert(
-              //   'email = ' +
-              //     this.state.email +
-              //     '\n' +
-              //     'password = ' +
-              //     this.state.password,
-              // );
-            }}
-            rightIc={'chatbox-outline'}
           />
 
           <View
@@ -72,6 +60,9 @@ export class Dashboard extends React.Component {
               justifyContent: 'center',
             }}>
             <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('List');
+              }}
               style={{
                 height: '80%',
                 backgroundColor: '#fff',

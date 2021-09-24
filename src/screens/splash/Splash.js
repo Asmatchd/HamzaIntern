@@ -4,9 +4,6 @@ import {View, Image} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export class Splash extends React.Component {
   componentDidMount = () => {
-    // setTimeout(() => {
-    //   this.props.navigation.replace('Dashboard');
-    // }, 3000);
     this.getUser();
   };
 
@@ -18,7 +15,7 @@ export class Splash extends React.Component {
         }, 3000);
       } else {
         setTimeout(() => {
-          this.props.navigation.replace('Dashboard');
+          this.props.navigation.replace('DrawerNavigator');
         }, 3000);
       }
     });
