@@ -61,7 +61,7 @@ export class Dashboard extends React.Component {
             }}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('List');
+                this.props.navigation.navigate('TabNavigator');
               }}
               style={{
                 height: '80%',

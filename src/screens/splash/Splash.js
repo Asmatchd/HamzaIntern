@@ -15,7 +15,7 @@ export class Splash extends React.Component {
         }, 3000);
       } else {
         setTimeout(() => {
-          this.props.navigation.replace('DrawerNavigator');
+          this.props.navigation.replace('HomeTabNavigator');
         }, 3000);
       }
     });
