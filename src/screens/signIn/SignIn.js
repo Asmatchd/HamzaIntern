@@ -12,6 +12,7 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppBtn, AppInput} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import EmailValidator from 'email-validator';
 
 export class SignIn extends React.Component {
   state = {
@@ -20,23 +21,32 @@ export class SignIn extends React.Component {
   };
 
   signIn = () => {
-    if (this.state.email === '' || this.state.password === '') {
-      alert('All fields are required');
-    } else {
-      if (this.state.password.length < 8) {
-        alert('Password must contain 8 characters');
+    let value = EmailValidator.validate(this.state.email);
+    if (value) {
+      if (this.state.password === '') {
+        alert('Password is required');
       } else {
-        const data = {
-          email: this.state.email,
-          password: this.state.password,
-        };
+        if (this.state.password.length < 8) {
+          alert('Password must contain 8 characters');
+        } else {
+          const data = {
+            email: this.state.email,
+            password: this.state.password,
+          };
 
-        AsyncStorage.setItem('userData', JSON.stringify(data), (error, res) => {
-          error
-            ? alert(error)
-            : this.props.navigation.replace('HomeTabNavigator');
-        });
+          AsyncStorage.setItem(
+            'userData',
+            JSON.stringify(data),
+            (error, res) => {
+              error
+                ? alert(error)
+                : this.props.navigation.replace('HomeTabNavigator');
+            },
+          );
+        }
       }
+    } else {
+      alert('Invalid email');
     }
   };
 
