@@ -10,6 +10,7 @@ import {Splash} from '../screens/splash';
 import {DrawerNavigator} from './DrawerNavigator';
 import {TabNavigator} from './TabNavigator';
 import {HomeTabNavigator} from './HomeTabNavigator';
+import {Profile} from '../screens/profile';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,11 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Splash"
           component={Splash}

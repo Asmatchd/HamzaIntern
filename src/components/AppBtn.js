@@ -6,9 +6,12 @@ export class AppBtn extends React.Component {
   render() {
     return (
       <View
-        style={{
-          width: '100%',
-        }}>
+        style={[
+          {
+            width: '100%',
+          },
+          this.props.st,
+        ]}>
         <TouchableOpacity
           {...this.props}
           style={{
