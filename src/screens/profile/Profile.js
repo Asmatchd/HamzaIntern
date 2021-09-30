@@ -10,7 +10,7 @@ export class Profile extends React.Component {
     img: '',
   };
 
-  openCamera = () => {
+  profileImg = value => {
     const options = {
       storageOptions: {
         skipBackup: true,
@@ -18,7 +18,9 @@ export class Profile extends React.Component {
       },
     };
 
-    launchCamera(options, response => {
+    const result = value === 'camera' ? launchCamera : launchImageLibrary;
+
+    result(options, response => {
       if (response.didCancel) {
         console.warn('User cancelled image picker');
       } else if (response.error) {
@@ -27,31 +29,6 @@ export class Profile extends React.Component {
         console.warn('User tapped custom button: ', response.customButton);
       } else {
         // actual URL of image
-        const source = response.assets[0].uri;
-
-        this.setState({
-          img: source,
-        });
-      }
-    });
-  };
-
-  openGallery = () => {
-    const options = {
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-
-    launchImageLibrary(options, response => {
-      if (response.didCancel) {
-        console.warn('User cancelled image picker');
-      } else if (response.error) {
-        console.warn('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.warn('User tapped custom button: ', response.customButton);
-      } else {
         const source = response.assets[0].uri;
 
         this.setState({
@@ -88,7 +65,7 @@ export class Profile extends React.Component {
 
         <AppBtn
           onPress={() => {
-            this.openCamera();
+            this.profileImg('camera');
           }}
           txt={'Open camera'}
           st={{
@@ -97,7 +74,7 @@ export class Profile extends React.Component {
         />
         <AppBtn
           onPress={() => {
-            this.openGallery();
+            this.profileImg('gallery');
           }}
           txt={'Open Gallery'}
           st={{
