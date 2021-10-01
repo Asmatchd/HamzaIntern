@@ -7,10 +7,13 @@ export class AppInput extends React.Component {
   render() {
     return (
       <View
-        style={{
-          width: '100%',
-          alignItems: 'center',
-        }}>
+        style={[
+          {
+            width: '100%',
+            alignItems: 'center',
+          },
+          this.props.st,
+        ]}>
         <View
           style={{
             flexDirection: 'row',

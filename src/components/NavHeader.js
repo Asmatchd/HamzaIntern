@@ -10,7 +10,7 @@ export class NavHeader extends React.Component {
       <View
         style={{
           width: '100%',
-          height: '8%',
+          height: 50,
           backgroundColor: '#fff9',
           flexDirection: 'row',
           borderBottomWidth: 0.3,

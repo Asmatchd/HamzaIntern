@@ -7,20 +7,25 @@ import {
   TouchableOpacity,
   ImageBackground,
   Alert,
-  ActivityIndicator,
+  Modal,
 } from 'react-native';
-import {NavHeader, Loading} from '../../components';
+import {NavHeader, Loading, AppInput, AppBtn} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export class Dashboard extends React.Component {
   state = {
+    showLoading: false,
+    modalVisible: false,
+
+    name: '',
+    phone: '',
     email: '',
     password: '',
-    showLoading: false,
   };
 
   componentDidMount = () => {
-    this.controlLoading(true);
+    // this.controlLoading(true);
 
     AsyncStorage.getItem('userData', (error, data) => {
       if (error || data === null) {
@@ -30,13 +35,15 @@ export class Dashboard extends React.Component {
         this.setState({
           email: user.email,
           password: user.password,
+          phone: '1234567890',
+          name: 'Hamza',
         });
       }
     });
 
-    setTimeout(() => {
-      this.controlLoading(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   this.controlLoading(false);
+    // }, 2000);
   };
 
   logOut = () => {
@@ -160,7 +167,101 @@ export class Dashboard extends React.Component {
               <Text>Alert</Text>
             </TouchableOpacity>
           </View>
+
+          <View
+            style={{
+              height: '18%',
+              // backgroundColor: '#faf',
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({modalVisible: true});
+              }}
+              style={{
+                height: '80%',
+                backgroundColor: '#fff',
+                width: '90%',
+                borderColor: 'red',
+                borderWidth: 0.5,
+                borderRadius: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text>Modal</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            this.setState({modalVisible: false});
+          }}>
+          <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 2}}>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: '#0009',
+                alignItems: 'center',
+              }}>
+              <NavHeader
+                title={'Modal'}
+                leftIc={'arrow-back'}
+                leftPressed={() => {
+                  this.setState({modalVisible: false});
+                }}
+              />
+
+              <View style={{width: '90%', marginTop: 20}}>
+                <AppInput
+                  value={this.state.name}
+                  ic={'ios-person'}
+                  st={{
+                    marginTop: 10,
+                  }}
+                  onChangeText={txt => this.setState({name: txt})}
+                />
+                <AppInput
+                  value={this.state.phone}
+                  ic={'ios-call'}
+                  st={{
+                    marginTop: 10,
+                  }}
+                  onChangeText={txt => this.setState({phone: txt})}
+                />
+                <AppInput
+                  value={this.state.email}
+                  ic={'ios-mail'}
+                  st={{
+                    marginTop: 10,
+                  }}
+                  onChangeText={txt => this.setState({email: txt})}
+                />
+                <AppInput
+                  value={this.state.password}
+                  ic={'lock-closed'}
+                  st={{
+                    marginTop: 10,
+                  }}
+                  onChangeText={txt => this.setState({password: txt})}
+                />
+
+                <AppBtn
+                  txt={'Done'}
+                  st={{
+                    marginTop: 20,
+                  }}
+                  onPress={() => this.setState({modalVisible: false})}
+                />
+              </View>
+            </View>
+          </KeyboardAwareScrollView>
+        </Modal>
       </ImageBackground>
     );
   }
