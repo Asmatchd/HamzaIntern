@@ -12,7 +12,10 @@ import {
 import {NavHeader, Loading, AppInput, AppBtn} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-
+import {
+  widthPercentageToDP as w,
+  heightPercentageToDP as h,
+} from 'react-native-responsive-screen';
 export class Dashboard extends React.Component {
   state = {
     showLoading: false,
