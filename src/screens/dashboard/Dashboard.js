@@ -196,6 +196,32 @@ export class Dashboard extends React.Component {
               <Text>Modal</Text>
             </TouchableOpacity>
           </View>
+
+          <View
+            style={{
+              height: '18%',
+              // backgroundColor: '#faf',
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({modalVisible: true});
+              }}
+              style={{
+                height: '80%',
+                backgroundColor: '#fff',
+                width: '90%',
+                borderColor: 'red',
+                borderWidth: 0.5,
+                borderRadius: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text>Date & Time</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <Modal
