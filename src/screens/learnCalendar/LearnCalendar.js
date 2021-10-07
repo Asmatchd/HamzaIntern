@@ -20,6 +20,12 @@ export class LearnCalendar extends React.Component {
     dt: '',
     allDates: ['2021-10-10', '2021-10-11', '2021-10-12'],
     markedDates: {},
+
+    data: [
+      {
+        name: 'Ali',
+      },
+    ],
   };
 
   componentDidMount = () => {
@@ -37,26 +43,31 @@ export class LearnCalendar extends React.Component {
   };
 
   mark = dates => {
-    let markedDates = [];
+    let markedDate = [];
 
-    dates.forEach(day => {
-      markedDates = {
-        ...markedDates,
-        [day]: {
-          marked: true,
-        },
-      };
+    dates.forEach(item => {
+      markedDate = {...markedDate, [item]: {marked: true}};
     });
 
-    markedDates = {
-      ...markedDates,
-      [this.state.dt]: {
-        selected: true,
-        marked: true,
-      },
+    markedDate = {
+      ...markedDate,
+      [this.state.dt]: {selected: true, marked: true},
     };
 
-    this.setState({markedDates: markedDates}, () => {});
+    this.setState({markedDates: markedDate}, () => {});
+  };
+
+  study = () => {
+    let newItem = {
+      name: 'Umer',
+    };
+
+    this.setState(
+      prevState => ({data: [...prevState.data, newItem]}),
+      () => {
+        console.warn(this.state.data);
+      },
+    );
   };
 
   render() {
@@ -124,7 +135,8 @@ export class LearnCalendar extends React.Component {
           }}>
           <AppBtn
             txt={'Time = ' + this.state.time}
-            onPress={() => this.setState({showTimePicker: true})}
+            // onPress={() => this.setState({showTimePicker: true})}
+            onPress={() => this.study()}
           />
 
           <AppBtn

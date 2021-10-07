@@ -12,19 +12,16 @@ export class SignUp extends React.Component {
   };
 
   signUpUser = () => {
-    if (
-      this.state.name === '' ||
-      this.state.email === '' ||
-      this.state.password === ''
-    ) {
+    let {name, email, password} = this.state;
+    if (name === '' || email === '' || password === '') {
       alert('All fields are required ');
     } else {
-      if (this.state.password.length < 8) {
+      if (password.length < 8) {
         alert('Password must contain 8 characters');
       } else {
-        console.warn('name = ' + this.state.name);
-        console.warn('email = ' + this.state.email);
-        console.warn('password = ' + this.state.password);
+        console.warn('name = ' + name);
+        console.warn('email = ' + email);
+        console.warn('password = ' + password);
       }
     }
   };
