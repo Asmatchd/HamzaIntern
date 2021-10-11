@@ -76,7 +76,13 @@ export class LearnCalendar extends React.Component {
         style={{
           flex: 1,
         }}>
-        <NavHeader title={'Learn Calendar'} />
+        <NavHeader
+          title={'Learn Calendar'}
+          leftIc={'arrow-back'}
+          leftPressed={() => {
+            this.props.navigation.goBack();
+          }}
+        />
 
         <View
           style={{

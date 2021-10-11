@@ -29,6 +29,20 @@ export class Settings extends React.Component {
         }}>
         <TouchableOpacity
           onPress={() => {
+            this.props.navigation.navigate('ServerList');
+          }}
+          style={{
+            width: '100%',
+            height: '10%',
+            backgroundColor: '#faf',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text> Server List</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
             this.props.navigation.navigate('List');
           }}
           style={{
@@ -37,6 +51,7 @@ export class Settings extends React.Component {
             backgroundColor: '#faf',
             alignItems: 'center',
             justifyContent: 'center',
+            marginTop: 10,
           }}>
           <Text>List</Text>
         </TouchableOpacity>

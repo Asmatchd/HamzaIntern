@@ -12,6 +12,7 @@ import {TabNavigator} from './TabNavigator';
 import {HomeTabNavigator} from './HomeTabNavigator';
 import {Profile} from '../screens/profile';
 import {LearnCalendar} from '../screens/learnCalendar';
+import {ServerList} from '../screens/serverList';
 
 const Stack = createStackNavigator();
 
@@ -20,8 +21,8 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="LearnCalendar"
-          component={LearnCalendar}
+          name="ServerList"
+          component={ServerList}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -40,11 +41,11 @@ export const ScreenNavigator = () => {
           component={Profile}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name="HomeTabNavigator"
-          component={HomeTabNavigator}
+        <Stack.Screen
+          name="LearnCalendar"
+          component={LearnCalendar}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}

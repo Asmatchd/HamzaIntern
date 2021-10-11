@@ -142,20 +142,21 @@ export class Dashboard extends React.Component {
             }}>
             <TouchableOpacity
               onPress={() => {
-                Alert.alert('Custom Alert...!', 'THis is custom alert', [
-                  {
-                    text: 'Remind later',
-                    onPress: () => console.warn('remind Later'),
-                  },
-                  {
-                    text: 'Cancel',
-                    onPress: () => console.warn('Cancel'),
-                  },
-                  {
-                    text: 'Ok',
-                    onPress: () => console.warn('Ok'),
-                  },
-                ]);
+                this.props.navigation.navigate('LearnCalendar');
+                // Alert.alert('Custom Alert...!', 'THis is custom alert', [
+                //   {
+                //     text: 'Remind later',
+                //     onPress: () => console.warn('remind Later'),
+                //   },
+                //   {
+                //     text: 'Cancel',
+                //     onPress: () => console.warn('Cancel'),
+                //   },
+                //   {
+                //     text: 'Ok',
+                //     onPress: () => console.warn('Ok'),
+                //   },
+                // ]);
               }}
               style={{
                 height: '80%',
@@ -167,7 +168,7 @@ export class Dashboard extends React.Component {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <Text>Alert</Text>
+              <Text>Learn Calendar</Text>
             </TouchableOpacity>
           </View>
 
