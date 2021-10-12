@@ -1,12 +1,49 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
-import {NavHeader} from '../../components';
+import {AppInput, NavHeader} from '../../components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export class List extends React.Component {
   state = {
     data: [
+      {
+        name: 'Khawer',
+        phone: '123456789',
+        img: require('../../assets/1.jpg'),
+        age: '20',
+        dob: '10-sep-2001',
+      },
+      {
+        name: 'Ali',
+        phone: '8765432',
+        img: require('../../assets/2.jpg'),
+        age: '22',
+        dob: '22-oct-2001',
+      },
+      {
+        name: 'Umer',
+        phone: '32545726',
+        img: require('../../assets/3.jpg'),
+        age: '18',
+        dob: '19-n0v-2001',
+      },
+      {
+        name: 'Kamran',
+        phone: '12348765',
+        img: require('../../assets/4.jpg'),
+        age: '40',
+        dob: '10-apr-2001',
+      },
+      {
+        name: 'Waseem',
+        phone: '35434626',
+        img: require('../../assets/1.jpg'),
+        age: '25',
+        dob: '10-sep-2005',
+      },
+    ],
+    filteredData: [
       {
         name: 'Khawer',
         phone: '123456789',
@@ -121,6 +158,17 @@ export class List extends React.Component {
     });
   };
 
+  searchFilter = txt => {
+    const newData = this.state.data.filter(item => {
+      const itemData = `${item.name.toUpperCase()} ${item.phone.toUpperCase()}`;
+      const textData = txt.toUpperCase();
+
+      return itemData.indexOf(textData) > -1;
+    });
+
+    this.setState({filteredData: newData});
+  };
+
   render() {
     return (
       <View
@@ -135,8 +183,21 @@ export class List extends React.Component {
           }}
         />
 
+        <View
+          style={{
+            backgroundColor: 'red',
+            height: 80,
+            justifyContent: 'center',
+          }}>
+          <AppInput
+            placeholder={'Search here'}
+            ic={'ios-search'}
+            onChangeText={txt => this.searchFilter(txt)}
+          />
+        </View>
+
         <FlatList
-          data={this.state.data}
+          data={this.state.filteredData}
           renderItem={({item}) => this.renderDesign(item)}
           keyExtractor={(index, item) => item}
           ItemSeparatorComponent={() => (
@@ -146,16 +207,16 @@ export class List extends React.Component {
               }}
             />
           )}
-          ListHeaderComponent={() => (
-            <View>
-              <Text>This is header</Text>
-            </View>
-          )}
-          ListFooterComponent={() => (
-            <View>
-              <Text>This is footer</Text>
-            </View>
-          )}
+          // ListHeaderComponent={() => (
+          //   <View>
+          //     <Text>This is footer</Text>
+          //   </View>
+          // )}
+          // ListFooterComponent={() => (
+          //   <View>
+          //     <Text>This is footer</Text>
+          //   </View>
+          // )}
           refreshing={this.state.showRefreshing}
           onRefresh={() => this.controlRefreshing()}
         />
