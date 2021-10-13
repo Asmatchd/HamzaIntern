@@ -13,6 +13,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppBtn, AppInput} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import EmailValidator from 'email-validator';
+import {axiosInstance, baseUrl} from '../../services/API';
 
 export class SignIn extends React.Component {
   state = {
@@ -29,20 +30,31 @@ export class SignIn extends React.Component {
         if (this.state.password.length < 8) {
           alert('Password must contain 8 characters');
         } else {
-          const data = {
+          const params = {
             email: this.state.email,
             password: this.state.password,
           };
 
-          AsyncStorage.setItem(
-            'userData',
-            JSON.stringify(data),
-            (error, res) => {
-              error
-                ? alert(error)
-                : this.props.navigation.replace('HomeTabNavigator');
-            },
-          );
+          axiosInstance
+            .post(baseUrl + 'users/signIn', params)
+            .then(res => {
+              const data = res.data;
+              if (data.status === '200') {
+                alert(data.msg);
+                AsyncStorage.setItem(
+                  'userData',
+                  JSON.stringify(data.data),
+                  () => {
+                    this.props.navigation.navigate('HomeTabNavigator');
+                  },
+                );
+              } else {
+                alert(data.msg);
+              }
+            })
+            .catch(err => {
+              console.warn(err.message);
+            });
         }
       }
     } else {

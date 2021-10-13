@@ -226,14 +226,14 @@ export class ServerList extends React.Component {
           data={this.state.columnData}
           renderItem={({item}) => this.renderColumnDesign(item)}
           keyExtractor={(index, item) => item}
-          ItemSeparatorComponent={() => (
-            <View
-              style={{
-                height: 10,
-                width: 10,
-              }}
-            />
-          )}
+          // ItemSeparatorComponent={() => (
+          //   <View
+          //     style={{
+          //       height: 10,
+          //       width: 10,
+          //     }}
+          //   />
+          // )}
         />
       </View>
     );

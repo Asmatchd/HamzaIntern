@@ -159,6 +159,7 @@ export class List extends React.Component {
   };
 
   searchFilter = txt => {
+    console.warn(txt);
     const newData = this.state.data.filter(item => {
       const itemData = `${item.name.toUpperCase()} ${item.phone.toUpperCase()}`;
       const textData = txt.toUpperCase();

@@ -1,27 +1,53 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {axiosInstance, baseUrl} from '../../services/API';
 
 export class SignUp extends React.Component {
   state = {
     name: '',
     email: '',
     password: '',
+    ph: '',
   };
 
   signUpUser = () => {
-    let {name, email, password} = this.state;
-    if (name === '' || email === '' || password === '') {
+    let {name, ph, email, password} = this.state;
+    if (name === '' || ph === '' || email === '' || password === '') {
       alert('All fields are required ');
     } else {
       if (password.length < 8) {
         alert('Password must contain 8 characters');
       } else {
-        console.warn('name = ' + name);
-        console.warn('email = ' + email);
-        console.warn('password = ' + password);
+        let params = {
+          name: name,
+          phone: ph,
+          email: email,
+          password: password,
+        };
+        axiosInstance
+          .post(baseUrl + 'users/signUp', params)
+          .then(res => {
+            const data = res.data;
+            if (data.status === '200') {
+              alert(data.msg);
+              AsyncStorage.setItem(
+                'userData',
+                JSON.stringify(data.data),
+                () => {
+                  this.props.navigation.navigate('HomeTabNavigator');
+                },
+              );
+            } else {
+              alert(data.msg);
+            }
+          })
+          .catch(err => {
+            console.warn(err.message);
+          });
       }
     }
   };
@@ -93,6 +119,22 @@ export class SignUp extends React.Component {
             }}
             underlineColorAndroid={'#fff'}
             placeholder={'Name'}
+            placeholderTextColor={'#fff'}
+            // value={this.state.name}
+          />
+
+          <TextInput
+            onChangeText={txt => {
+              this.setState({ph: txt});
+            }}
+            style={{
+              height: 50,
+              width: '100%',
+              fontSize: 18,
+              color: '#fff',
+            }}
+            underlineColorAndroid={'#fff'}
+            placeholder={'phone'}
             placeholderTextColor={'#fff'}
             // value={this.state.name}
           />
